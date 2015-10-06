@@ -81,6 +81,11 @@ angular.module('kwiki', [
     url: '/chat',
     templateUrl: 'templates/chat.html',
     controller: 'ChatCtrl'
+  })
+  .state('profile', {
+    url: '/profile',
+    templateUrl: 'templates/profile.html',
+    controller: 'ProfileCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
