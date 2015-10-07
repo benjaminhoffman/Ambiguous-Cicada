@@ -46,6 +46,8 @@ angular.module('kwiki.auth', [])
 })
 
 .controller('AuthCtrl', function ($scope, $rootScope, $state, $window, AuthFactory) {
+  $scope.invalidUser = false;
+
   $scope.addUser = function (username, password) {
     var userObject = {
       username: username,
@@ -65,12 +67,15 @@ angular.module('kwiki.auth', [])
       password: password
     };
 
-    AuthFactory.checkUser(userObject).then(function (res) {
-      $window.localStorage.setItem('com.kwiki', JSON.stringify(res.data));
-      $rootScope.user = res.data;
-
-      $state.go('match');
-    });
+    AuthFactory.checkUser(userObject)
+      .then(function (res) {
+        $window.localStorage.setItem('com.kwiki', JSON.stringify(res.data));
+        $rootScope.user = res.data;
+        $state.go('match');
+      })
+      .catch(function (err) {
+        $scope.invalidUser = true;
+      })
   };
 
 
