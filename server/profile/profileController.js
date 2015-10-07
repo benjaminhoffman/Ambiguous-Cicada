@@ -1,4 +1,3 @@
-var db = require('../config.js')
 var User = require('../auth/userModel.js');
 
 module.exports = {
