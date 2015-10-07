@@ -10,7 +10,8 @@ angular.module('kwiki', [
   'kwiki.auth',
   'kwiki.match',
   'kwiki.socket',
-  'kwiki.chat'
+  'kwiki.chat',
+  'kwiki.profile'
 ])
 
 .run(function($ionicPlatform, $rootScope) {
@@ -82,6 +83,7 @@ angular.module('kwiki', [
     templateUrl: 'templates/chat.html',
     controller: 'ChatCtrl'
   })
+
   .state('profile', {
     url: '/profile',
     templateUrl: 'templates/profile.html',
