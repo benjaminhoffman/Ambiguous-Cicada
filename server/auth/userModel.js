@@ -12,6 +12,13 @@ var UserSchema = new db.Schema({
     type: String,
     required: true
   },
+
+  zipcode: {
+    type: Number
+  },
+
+  interests: Array,
+
   salt: String
 });
 
