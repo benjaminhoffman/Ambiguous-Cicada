@@ -61,26 +61,31 @@ angular.module('kwiki.chat',[])
   };
 
   $scope.sendMessage = function () {
+
+    $scope.message.triggerWord = false;
+    var parseText = $scope.message.text.split(" ");
+
+    parseText.forEach(function(text) {
+      if(triggerWords.indexOf(text) !== -1) {
+        $scope.message.triggerWord = text;
+        console.log("make it rain")
+      }
+    })
+
     if( $scope.message ){
       ChatFactory.postMessage(this.message);
       $scope.messages.push({
         userName: this.message.userName,
         text: this.message.text
       });
-
-      var parseText = $scope.message.text.split(" ");
-
-      parseText.forEach(function(text) {
-        if(triggerWords.indexOf(text) !== -1) {
-          console.log("make it rain")
-        }
-      })
-
-      console.log(JSON.stringify($scope.message));
-
       $scope.message.text = '';
+      $scope.message.triggerWord = false;
     }
   };
+
+  // PLACEHOLDER
+  // $scope.makeItRain = function(triggerWord) {
+  // };
 
   $scope.logOut = function () {
     $scope.messages = [];
