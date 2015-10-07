@@ -32,7 +32,7 @@
   margin: 0 auto;
 }
 #authbox-container {
-  height: 100vh;
+  height: 100%;
   text-align: center;
 }
 .authbox-button-container {
@@ -54,7 +54,7 @@ div.image {
 
 /* Match View */
 #matchbox-container {
-  height: 100vh;
+  height: 100%;
 }
 .matchbox-button-container {
   text-align: center;
