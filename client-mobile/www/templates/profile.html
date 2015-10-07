@@ -2,34 +2,42 @@
   <ion-content>
     <div id="profilebox-container" class="profilebox">
       <div class="inputs">
-        
-        <div>
-          <label>
-            <input ng-model="zipcode" type="number" placeholder="your default zipcode" class="zipcode">
-          </label>
-        </div>
-        
-        <div>
-          What are your interests?
-        </div>
+          
+        <form name="profileForm" ng-submit="handleSubmit(user)" novalidate>
+          
+          <div>
+            <label>
+              <input ng-model="user.zipcode" type="number" placeholder="your default zipcode" class="zipcode">
+            </label>
+          </div>
+          
+          <div>
+            What are your interests?
+          </div>
 
-        <div>
-          <label>Sports:
-            <input ng-model="interests.sports" type="checkbox">
-          </label>
-        </div>
+          <div>
+            <label>Sports:
+              <input ng-model="user.interests.sports" type="checkbox">
+            </label>
+          </div>
 
-        <div>
-          <label>Beauty:
-            <input ng-model="interests.beauty" type="checkbox">
-          </label>
-        </div>
+          <div>
+            <label>Beauty:
+              <input ng-model="user.interests.beauty" type="checkbox">
+            </label>
+          </div>
 
-        <div>
-          <label>Other:
-            <input ng-model="interests.other" type="checkbox">
-          </label>
-        </div>
+          <div>
+            <label>Other:
+              <input ng-model="user.interests.other" type="checkbox">
+            </label>
+          </div>
+
+          <div>
+            <input type="submit" value="submit">
+          </div>
+          
+        </form>
 
       </div>
     </div>
