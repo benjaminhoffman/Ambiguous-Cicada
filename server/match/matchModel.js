@@ -7,10 +7,13 @@ var MatchModel = function(matcher) {
 };
 
 MatchModel.prototype.join = function(user) {
-  return Promise.all([
+  var matchPromises = [
       this._add(user),
-      this._matcher.preMatch(user)
-    ])
+  ];
+  if( !user.coords ) {
+    matchPromises.push(this._matcher.preMatch(user));
+  }
+  return Promise.all(matchPromises)
     .then(function() {
       this._match();
     }.bind(this));

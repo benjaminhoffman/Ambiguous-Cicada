@@ -1,6 +1,6 @@
-angular.module('kwiki.match', [])
+angular.module('kwiki.match', ['ngCordova'])
 
-.factory('MatchFactory', ['$state', 'SocketFactory', '$window', '$rootScope', function ($state, SocketFactory, $window, $rootScope) {
+.factory('MatchFactory', ['$state', 'SocketFactory', '$window', '$rootScope', '$cordovaGeolocation', function ($state, SocketFactory, $window, $rootScope, $cordovaGeolocation) {
   var matchFact = {};
 
   matchFact.connectSocket = function () {
@@ -8,7 +8,21 @@ angular.module('kwiki.match', [])
   };
 
   matchFact.postMatch = function () {
-    this.socket.emit('matching', $rootScope.user);
+    var self = this;
+    if( $rootScope.user.address.toUpperCase() === "CURRENT LOCATION" ) {
+      console.log('beep boop');
+      var posOptions = {timeout: 10000, enableHighAccuracy: false};
+      $cordovaGeolocation.getCurrentPosition(posOptions)
+      .then(function (position) {
+        $rootScope.user.coords = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        self.socket.emit('matching', $rootScope.user);
+      });
+    } else {
+      this.socket.emit('matching', $rootScope.user);
+    }
     this.socket.on('matched', function (data) {
       $rootScope.chatRoomId = data;
       $rootScope.$apply(function () {
@@ -32,6 +46,10 @@ angular.module('kwiki.match', [])
     MatchFactory.postMatch();
     $state.go('load');
   };
+
+  $scope.handleCancel = function () {
+    $state.go('match');
+  }
 
   $scope.logOut = function () {
     $rootScope.disableButton = false;

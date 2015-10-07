@@ -5,17 +5,20 @@
     </button>
   </ion-nav-buttons>
   <ion-content>
-
+  
     <div id="matchbox-container" class="matchbox" ng-init="connect()">
+      <form ng-submit="submit()">
+        <div class="inputs">
+          <input type="text" placeholder="Enter an address or zip" ng-model="$root.user.address" list="locations" class="matchbox-location">
+          <datalist id="locations">
+            <option value="CURRENT LOCATION">
+          </datalist>
+        </div>
 
-      <div class="inputs">
-        <input type="text" placeholder="Enter an address or zip" ng-model="$root.user.address" class="matchbox-location">
-      </div>
-
-      <div class="matchbox-button-container">
-        <input type="submit" class="button button-energized matchbox-button" ng-click="submit()" ng-disabled="disableButton" value="Find me a kwiki">
-      </div>
-
+        <div class="matchbox-button-container">
+          <input type="submit" class="button button-energized matchbox-button" ng-disabled="disableButton" list="locations" value="Find me a kwiki">
+        </div>
+      </form>
     </div>
 
   </ion-content>
