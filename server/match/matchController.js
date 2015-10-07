@@ -3,7 +3,7 @@ var MatchModel = require('./matchModel');
 var CoordMatcher = require('./coordMatcher');
 
 var roomSize = 2;
-var maxDist = 5;
+var maxDist = 5; // Max distance in miles
 var matcher = new CoordMatcher(roomSize, maxDist);
 
 var lobby = new MatchModel(matcher);

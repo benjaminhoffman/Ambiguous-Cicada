@@ -8,8 +8,6 @@ angular.module('kwiki.match', ['ngCordova'])
   };
 
   matchFact.postMatch = function () {
-    console.log($rootScope.user.address);
-    console.log($cordovaGeolocation);
     var self = this;
     if( $rootScope.user.address.toUpperCase() === "CURRENT LOCATION" ) {
       console.log('beep boop');
