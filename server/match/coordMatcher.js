@@ -17,11 +17,13 @@ coordMatcher.prototype.preMatch = function(user) {
 coordMatcher.prototype.match = function(users) {
   return new Promise(function (resolve, reject) {
 
-    for (var i = 0; i < users.length; i++) {
-      for (var j = i+1; j < users.length; j++) {
+    for( var i = 0; i < users.length; i++ ) {
+      for( var j = i+1; j < users.length; j++ ) {
 
-        if(this._isMatch(users[i], users[j])){
+        if( this._isMatch(users[i], users[j]) ){
           resolve([ users[i], users[j] ]);
+        } else {
+          reject([ users[i], users[j] ]);
         }
 
       }
@@ -31,7 +33,8 @@ coordMatcher.prototype.match = function(users) {
 };
 
 coordMatcher.prototype._isMatch = function(userA, userB) {
-  return this._getDistance(userA.coords, userB.coords) < this.maxDist;
+  var maxDist = Math.min(userA.search.distance, userB.search.distance);
+  return this._getDistance(userA.coords, userB.coords) < maxDist;
 };
 
 coordMatcher.prototype._encodeAddress = function (addressString) {

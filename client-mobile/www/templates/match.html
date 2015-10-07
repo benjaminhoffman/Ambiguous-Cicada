@@ -18,6 +18,15 @@
         <div class="matchbox-button-container">
           <input type="submit" class="button button-energized matchbox-button" ng-disabled="disableButton" list="locations" value="Find me a kwiki">
         </div>
+        <div class="list">
+          <div class="item range range-positive">
+            <span class="input-label">Distance: {{$root.user.search.distance | number : 1}} mi</span>
+            <i class="icon ion-minus"></i>
+            <input type="range" name="distance" min=0 max=10 value=5 step=0.1 ng-model="$root.user.search.distance">
+            <i class="icon ion-plus"></i>
+          </div>
+
+        </div>
       </form>
     </div>
 

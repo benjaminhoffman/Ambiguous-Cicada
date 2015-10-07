@@ -22,7 +22,7 @@ MatchModel.prototype.join = function(user) {
 MatchModel.prototype.leave = function(user) {
   return new Promise(function(resolve, reject) {
     for (var i = 0; i < this.users.length; i++) {
-      if (this.users[i] === user){
+      if (this.users[i].id === user.id){
         resolve(this.users.splice(i,1)[0]);
         this._size--;
       }

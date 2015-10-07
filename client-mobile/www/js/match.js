@@ -31,11 +31,19 @@ angular.module('kwiki.match', ['ngCordova'])
     });
   };
 
+  matchFact.cancelMatch = function () {
+    this.socket.emit('cancel', $rootScope.user);
+  }
+
   return matchFact;
 }])
 
 .controller('MatchCtrl', ['$rootScope', '$state', '$scope', 'MatchFactory', 'AuthFactory', function ($rootScope, $state, $scope, MatchFactory, AuthFactory) {
   $rootScope.disableButton = false;
+  defaultSearch = {
+    distance: 5
+  };
+  $rootScope.user.search = $rootScope.user.search || defaultSearch;
 
   $scope.connect = function() {
     MatchFactory.connectSocket();
@@ -48,6 +56,8 @@ angular.module('kwiki.match', ['ngCordova'])
   };
 
   $scope.handleCancel = function () {
+    $rootScope.disableButton = false;
+    MatchFactory.cancelMatch();
     $state.go('match');
   }
 
