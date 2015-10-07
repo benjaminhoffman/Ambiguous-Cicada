@@ -50,6 +50,9 @@ io.of('/match').on('connection', function (socket) {
       socket.emit('matched', chatRoomId);
     });
   });
+  socket.on('cancel', function(data) {
+    matchCtrl.remove(data);
+  })
 });
 
 // Sockets Chatting Namespace
