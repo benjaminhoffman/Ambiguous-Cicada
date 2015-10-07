@@ -15,7 +15,20 @@ var UserSchema = new db.Schema({
 
   zipcode: Number,
 
-  interests: Array,
+  sports: {
+    type: Boolean,
+    default: false
+  },
+
+  beauty: {
+    type: Boolean,
+    default: false
+  },
+  
+  other: {
+    type: Boolean,
+    default: false
+  },
 
   salt: String
 });
