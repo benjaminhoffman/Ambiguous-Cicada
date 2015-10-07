@@ -13,12 +13,16 @@
             </ul>
           </div>
           <form ng-submit="sendMessage()">
-            <label class="item item-input message-input">
-              <input type="text" ng-model="message.text" placeholder="Send a message ..."/>
-            </label>
-            <button class="button button-block button-calm" action="submit">Send</button>
+            <div class="item-input-inset">
+              <label class="item item-input-wrapper message-input">
+                <input type="text" ng-model="message.text" placeholder="Send a message ..."/>
+              </label>
+              <button class="button button-medium icon ion-edit"></button>
+            </div>
+            <button class="button button-full button-calm" action="submit">Send</button>
           </form>
         </div>
       </div>
     </ion-content>
   </ion-view>
+  <div class="list">
