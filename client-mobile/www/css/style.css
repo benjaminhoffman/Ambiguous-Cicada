@@ -1,5 +1,14 @@
 /* Empty. Add your own CSS if you like */
 
+.error {
+  color: red;
+}
+
+.centeredError {
+  text-align: center;
+  margin: 1% auto;
+}
+
 .user {
   color: #00BBEE;
   font-size: 1.1em;
