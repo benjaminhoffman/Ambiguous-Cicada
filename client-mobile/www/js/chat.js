@@ -21,6 +21,7 @@ angular.module('kwiki.chat',[])
   };
 
   chatFact.postMessage = function (message) {
+    console.log(message);
     this.socket.emit('message', message);
   };
 
