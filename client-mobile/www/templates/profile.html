@@ -1,0 +1,41 @@
+<ion-view ng-controller="ProfileCtrl" view-title="Kwiki Profile Update">
+  <ion-content>
+    <div id="profilebox-container" class="profilebox">
+      <div class="inputs">
+        
+        <div>
+          <label>
+            <input ng-model="zipcode" type="number" placeholder="your default zipcode" class="zipcode">
+          </label>
+        </div>
+        
+        <div>
+          What are your interests?
+        </div>
+
+        <div>
+          <label>Sports:
+            <input ng-model="interests.sports" type="checkbox">
+          </label>
+        </div>
+
+        <div>
+          <label>Beauty:
+            <input ng-model="interests.beauty" type="checkbox">
+          </label>
+        </div>
+
+        <div>
+          <label>Other:
+            <input ng-model="interests.other" type="checkbox">
+          </label>
+        </div>
+
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+
+
+
+

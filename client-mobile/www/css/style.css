@@ -45,11 +45,11 @@
   margin: 0 auto;
 }
 div.image {
-   content: url('../img/logo.png');
-   width: 20em;
-   height: 15em;
-   margin: 0 auto;
-   margin-top: 20%;
+  content: url('../img/logo.png');
+  width: 20em;
+  height: 15em;
+  margin: 0 auto;
+  margin-top: 20%;
 }
 
 /* Match View */
