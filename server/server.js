@@ -17,7 +17,7 @@ var chatCtrl = require('./chat/chatController');
 var utils = require('./lib/utils');
 
 // Routes
-var router = express.Router();
+var profileRouter = express.Router();
 
 
 if( (process.env.NODE_ENV === 'development') || !(process.env.NODE_ENV) ){
@@ -73,8 +73,8 @@ io.of('/chat').on('connection', function (socket) {
 });
 
 // Express Routes
-app.use('/profile', router);
-require('./profile/profileRoutes')(router);
+app.use('/profile', profileRouter);
+require('./profile/profileRoutes')(profileRouter);
 
 
 // Authentication Routes
