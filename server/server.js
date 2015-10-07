@@ -74,7 +74,7 @@ io.of('/chat').on('connection', function (socket) {
 
 // Express Routes
 app.use('/profile', profileRouter);
-require('/profile/profileRoutes')(profileRouter);
+require('./profile/profileRoutes')(profileRouter);
 
 
 // Authentication Routes
