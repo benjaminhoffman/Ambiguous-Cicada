@@ -16,6 +16,10 @@ var matchCtrl = require('./match/matchController');
 var chatCtrl = require('./chat/chatController');
 var utils = require('./lib/utils');
 
+// Routes
+var profileRouter = express.Router();
+
+
 if( (process.env.NODE_ENV === 'development') || !(process.env.NODE_ENV) ){
   app.use(logger('dev'));
 }
@@ -68,6 +72,11 @@ io.of('/chat').on('connection', function (socket) {
   });
 });
 
+// Express Routes
+app.use('/profile', profileRouter);
+require('/profile/profileRoutes')(profileRouter);
+
+
 // Authentication Routes
 app.post('/signup', function(req, res) {
   auth.signup(req.body.username, req.body.password)
@@ -97,3 +106,8 @@ app.post('/login', function(req, res) {
 app.post('/logout', utils.destroySession, function(req, res) {
   res.status(200).end();
 });
+
+
+
+
+
