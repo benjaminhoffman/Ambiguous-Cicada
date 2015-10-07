@@ -13,9 +13,7 @@ var UserSchema = new db.Schema({
     required: true
   },
 
-  zipcode: {
-    type: Number
-  },
+  zipcode: Number,
 
   interests: Array,
 
