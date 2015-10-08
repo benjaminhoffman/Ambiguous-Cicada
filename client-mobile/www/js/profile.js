@@ -3,7 +3,6 @@ angular.module('kwiki.profile', [])
 .factory('ProfileFactory', function ($http, $state, SocketFactory, $window, $rootScope) {
 
   var updateProfileInfo = function(userProfile) {
-    console.log(userProfile)
     return $http({
       method: 'PUT',
       url: $rootScope.host + '/profile/' + userProfile.id,
