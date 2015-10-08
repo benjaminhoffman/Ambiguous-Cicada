@@ -32,10 +32,42 @@ angular.module('kwiki.chat',['ionic'])
 
   $scope.trigger = false;
   $scope.triggerWord = '';
-  var triggerWords = ['cho', 'tempest', 'birthday', 'tea']
+  var triggerWords = ['cho', 'tempest', 'birthday', 'tea'];
+
+  $scope.style = [
+    {
+      'transition': '3s linear all'
+    },
+    {
+      'transition': '1s linear all'
+    },
+    {
+      'transition': '1.5s linear all'
+    },
+    {
+      'transition': '2s linear all'
+    },
+    {
+      'transition': '1s linear all'
+    },
+    {
+      'transition': '4s linear all'
+    },
+    {
+      'transition': '5s linear all'
+    },
+    {
+      'transition': '3s linear all'
+    },
+    {
+      'transition': '2s linear all'
+    }
+
+  ];
 
   $scope.messages = [];
   $scope.draw = false;
+
   $scope._drawGesture = undefined;
 
   $scope.message = {
