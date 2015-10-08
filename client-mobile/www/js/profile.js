@@ -1,15 +1,19 @@
 angular.module('kwiki.profile', [])
 
-.factory('ProfileFactory', function ($http, $state, SocketFactory, $window, $rootscope) {
+.factory('ProfileFactory', function ($http, $state, SocketFactory, $window, $rootScope) {
 
   var updateProfileInfo = function(userProfile) {
-    return $http.post('/??????????', userProfile)
-      .then(function(res) {
-        return res.data;
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
+    return $http({
+      method: 'PUT',
+      url: $rootScope.host + '/profile/' + userProfile.id,
+      data: userProfile
+    })
+    .then(function(res) {
+      return res.data;
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
   };
 
   return {

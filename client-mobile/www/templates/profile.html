@@ -6,9 +6,22 @@
         <form name="profileForm" ng-submit="handleSubmit(user)" novalidate>
           
           <div>
-            <label>
-              <input ng-model="user.zipcode" type="number" placeholder="your default zipcode" class="zipcode">
-            </label>
+            What is your gender?
+          </div>
+          
+          <div>
+            <input ng-model="user.gender" class="profile gender" type="radio" name="gender" value="male">Male
+            <input ng-model="user.gender" class="profile gender" type="radio" name="gender" value="female">Female
+          </div>
+          
+          <div>
+            Do you have a preference of your kwiki's gender?
+          </div>
+            
+          <div>
+            <input ng-model="user.prefGender" class="profile prefGender" type="radio" name="prefGender" value="male">Male
+            <input ng-model="user.prefGender" class="profile prefGender" type="radio" name="prefGender" value="female">Female
+            <input ng-model="user.prefGender" class="profile prefGender" type="radio" name="prefGender" value="either">Either
           </div>
           
           <div>
