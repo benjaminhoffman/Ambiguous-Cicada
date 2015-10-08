@@ -1,27 +1,71 @@
-<ion-view ng-controller="ProfileCtrl" view-title="Kwiki Profile Update">
+<ion-view ng-controller="ProfileCtrl" view-title="Update Your Profile">
   <ion-content>
-    <div id="profilebox-container" class="profilebox">
-      <div class="inputs">
+
+  <!-- I cant get this to work -->
+  <!-- <div class="bar bar-subheader">
+    <h2 class="title">Choose Your Match Preferences</h2>
+  </div> -->
+
+    <!-- Im not sure what these two lines do -->
+    <!-- <div id="profilebox-container" class="profilebox"> -->
+      <!-- <div class="inputs"> -->
           
+
         <form name="profileForm" ng-submit="handleSubmit(user)" novalidate>
           
           <div>
             What is your gender?
           </div>
           
-          <div>
-            <input ng-model="user.gender" class="profile gender" type="radio" name="gender" value="male">Male
-            <input ng-model="user.gender" class="profile gender" type="radio" name="gender" value="female">Female
+          <div class="list">
+            
+            <label class="item item-radio">
+              <input ng-model="user.gender" class="profile gender" type="radio" name="gender" value="male">
+              <div class="item-content">
+                Male
+              </div>
+              <i class="radio-icon ion-checkmark"></i>
+            </label>
+
+            <label class="item item-radio">
+              <input ng-model="user.gender" class="profile gender" type="radio" name="gender" value="female">
+              <div class="item-content">
+                Female
+              </div>
+              <i class="radio-icon ion-checkmark"></i>
+            </label>
           </div>
           
           <div>
             Do you have a preference of your kwiki's gender?
           </div>
             
-          <div>
-            <input ng-model="user.prefGender" class="profile prefGender" type="radio" name="prefGender" value="male">Male
-            <input ng-model="user.prefGender" class="profile prefGender" type="radio" name="prefGender" value="female">Female
-            <input ng-model="user.prefGender" class="profile prefGender" type="radio" name="prefGender" value="either">Either
+          <div class="list">
+            
+            <label class="item item-radio">
+              <input ng-model="user.prefGender" type="radio" name="prefGender" value="male">
+              <div class="item-content">
+                Male
+              </div>
+              <i class="radio-icon ion-checkmark"></i>
+            </label>
+
+            <label class="item item-radio">
+              <input ng-model="user.prefGender" type="radio" name="prefGender" value="female">
+              <div class="item-content">
+                Female
+              </div>
+              <i class="radio-icon ion-checkmark"></i>
+            </label>
+
+            <label class="item item-radio">
+              <input ng-model="user.prefGender" type="radio" name="prefGender" value="either">
+              <div class="item-content">
+                Either
+              </div>
+              <i class="radio-icon ion-checkmark"></i>
+            </label>
+
           </div>
           
           <div>
@@ -29,31 +73,49 @@
           </div>
 
           <div>
-            <label>Sports:
-              <input ng-model="user.interests.sports" type="checkbox" name="interests" class="profile interests">
-            </label>
+            <ul class="list">
+              <li class="item item-toggle">
+                Sports
+                <label class="toggle toggle-assertive">
+                  <input ng-model="user.interests.sports" type="checkbox" name="interests" class="profile interests">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+              </li>
+              <li class="item item-toggle">
+                Beauty
+                <label class="toggle toggle-assertive">
+                  <input ng-model="user.interests.beauty" type="checkbox" name="interests" class="profile interests">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+              </li>
+              <li class="item item-toggle">
+                Other
+                <label class="toggle toggle-assertive">
+                  <input ng-model="user.interests.other" type="checkbox" name="interests" class="profile interests">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+              </li>
+
+            </ul>
           </div>
 
           <div>
-            <label>Beauty:
-              <input ng-model="user.interests.beauty" type="checkbox" name="interests" class="profile interests">
-            </label>
-          </div>
-
-          <div>
-            <label>Other:
-              <input ng-model="user.interests.other" type="checkbox" name="interests" class="profile interests">
-            </label>
-          </div>
-
-          <div>
-            <input type="submit" value="submit">
+            <input type="submit" value="submit" class="button button-block button-energized">
           </div>
           
         </form>
         <div>
           <a href="#/match">Back to Match</a>
         </div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     </div>
   </ion-content>
