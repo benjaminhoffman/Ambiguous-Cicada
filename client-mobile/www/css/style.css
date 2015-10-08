@@ -111,3 +111,41 @@ div.image {
     overflow: hidden;
 }
 
+.cho {
+  background-image: url('../img/cho.png');
+  background-size: 100%;
+  background-repeat: no-repeat;;
+  width: 30px;
+  height: 30px;
+  /*top: 20px;*/
+  z-index: 100;
+}
+
+.cho.ng-enter {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+.cho.ng-enter-active {
+  opacity:1;
+}
+
+.tempest {
+  background-image: url('../img/tempest.png');
+  background-size: 100%;
+  background-repeat: no-repeat;;
+  width: 30px;
+  height: 30px;
+  /*top: 0px;*/
+  z-index: 100;
+}
+
+.tempest.ng-enter {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+.tempest.ng-enter-active {
+  opacity:1;
+}
+

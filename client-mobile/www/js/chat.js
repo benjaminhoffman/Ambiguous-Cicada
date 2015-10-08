@@ -30,6 +30,8 @@ angular.module('kwiki.chat',[])
 
 .controller('ChatCtrl', ['$rootScope', '$state', '$scope', 'ChatFactory', 'AuthFactory', '$ionicGesture', function ($rootScope, $state, $scope, ChatFactory, AuthFactory, $ionicGesture) {
 
+  $scope.trigger = false;
+  $scope.triggerWord = '';
   var triggerWords = ['cho', 'tempest', 'birthday', 'tea']
 
   $scope.messages = [];
@@ -60,6 +62,9 @@ angular.module('kwiki.chat',[])
         parseText.forEach(function(text) {
           if(triggerWords.indexOf(text) !== -1) {
             message.triggerWord = text;
+            $scope.triggerWord = text;
+            console.log($scope.triggerWord)
+            $scope.trigger = true;
           }
         })
 
