@@ -13,11 +13,14 @@
             </ul>
           </div>
           <form ng-submit="sendMessage()">
-            <div class="item-input-inset">
-              <label class="item item-input-wrapper message-input">
+            <div class="item-input-inset" ng-switch="draw">
+              <label ng-switch-when="false" class="item item-input-wrapper message-input">
                 <input type="text" ng-model="message.text" placeholder="Send a message ..."/>
               </label>
-              <button class="button button-medium icon ion-edit"></button>
+              <div ng-switch-when="true" class="item-input-wrapper item" id="me" style="border:1px solid black;">
+                <canvas ng-model="canvas" on-drag="touch()" height="inherit" width="inherit"></canvas>
+              </div>
+              <button ng-click="draw = !draw" class="button button-medium icon ion-edit"></button>
             </div>
             <button class="button button-full button-calm" action="submit">Send</button>
           </form>

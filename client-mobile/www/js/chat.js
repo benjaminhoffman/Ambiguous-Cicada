@@ -28,9 +28,11 @@ angular.module('kwiki.chat',[])
 
 }])
 
-.controller('ChatCtrl', ['$rootScope', '$state', '$scope', 'ChatFactory', 'AuthFactory', function ($rootScope, $state, $scope, ChatFactory, AuthFactory) {
+.controller('ChatCtrl', ['$rootScope', '$state', '$scope', 'ChatFactory', 'AuthFactory', '$ionicGesture', function ($rootScope, $state, $scope, ChatFactory, AuthFactory, $ionicGesture) {
 
   $scope.messages = [];
+  $scope.draw = false;
+
 
   $scope.message = {
     userName: $rootScope.user.name,
