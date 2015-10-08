@@ -1,4 +1,4 @@
-angular.module('kwiki.chat',[])
+angular.module('kwiki.chat',['ionic'])
 
 .factory('ChatFactory', ['$http', '$rootScope', 'SocketFactory', '$window', function ($http, $rootScope, SocketFactory, $window) {
 
@@ -28,7 +28,7 @@ angular.module('kwiki.chat',[])
 
 }])
 
-.controller('ChatCtrl', ['$rootScope', '$state', '$scope', 'ChatFactory', 'AuthFactory', '$ionicGesture', function ($rootScope, $state, $scope, ChatFactory, AuthFactory, $ionicGesture) {
+.controller('ChatCtrl', ['$rootScope', '$state', '$scope', 'ChatFactory', 'AuthFactory', '$ionicGesture', '$window', '$timeout', function ($rootScope, $state, $scope, ChatFactory, AuthFactory, $ionicGesture, $window, $timeout) {
 
   $scope.trigger = false;
   $scope.triggerWord = '';
@@ -36,11 +36,49 @@ angular.module('kwiki.chat',[])
 
   $scope.messages = [];
   $scope.draw = false;
-
+  $scope._drawGesture = undefined;
 
   $scope.message = {
     userName: $rootScope.user.name,
     text: ''
+  };
+
+  $scope._stopListeningToDraw = function() {
+    $scope._drawGesture = $ionicGesture.on('drag', function (evt){
+      var coords = {
+        x:evt.gesture.srcEvent.layerX, 
+        y:evt.gesture.srcEvent.layerY  
+      };
+      console.log(coords);
+    }, $scope.can);
+
+  };
+
+  $scope._listenToDraw = function(){
+    $scope._drawGesture = $ionicGesture.on('drag', function (evt){
+      var coords = {
+        x:evt.gesture.srcEvent.layerX, 
+        y:evt.gesture.srcEvent.layerY  
+      };
+      console.log(coords);
+    }, $scope.can);
+  };
+  
+  $scope.toggleDrawView = function() {
+    $scope.draw = !$scope.draw;
+
+    if($scope.draw) {
+      
+      // this is terrible, just quick workaround while I work on the actual implementation
+      $timeout(function(){
+        $scope.can = angular.element(document.getElementById('can'));
+        $scope._listenToDraw();
+      },1000);
+    }
+    else {
+      $scope._stopListeningToDraw();
+    }
+
   };
 
   $scope.leaveChat = function (logout) {
@@ -106,6 +144,7 @@ angular.module('kwiki.chat',[])
 
 }])
 
+
 .animation('.slide', ['$animateCss', function($animateCss) {
   return {
     enter: function(element) {
@@ -118,4 +157,5 @@ angular.module('kwiki.chat',[])
     }
   }
 }])
+
 
