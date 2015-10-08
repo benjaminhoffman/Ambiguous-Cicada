@@ -117,17 +117,20 @@ div.image {
   background-repeat: no-repeat;;
   width: 30px;
   height: 30px;
-  /*top: 20px;*/
   z-index: 100;
 }
 
-.cho.ng-enter {
-  transition:0.5s linear all;
-  opacity:0;
+img.slide.ng-enter.cho {
+  transition:1s linear all;
+  transform:translateY(500px);
+  -webkit-transition:1s linear all;
+  -webkit-transform:translateY(500px);
+  /*opacity:0;*/
 }
 
-.cho.ng-enter-active {
-  opacity:1;
+img.slide.ng-enter.ng-enter-active.cho {
+  transform:translateY(0);
+  /*opacity:1;*/
 }
 
 .tempest {
@@ -136,7 +139,6 @@ div.image {
   background-repeat: no-repeat;;
   width: 30px;
   height: 30px;
-  /*top: 0px;*/
   z-index: 100;
 }
 

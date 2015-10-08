@@ -65,6 +65,7 @@ angular.module('kwiki.chat',[])
             $scope.triggerWord = text;
             console.log($scope.triggerWord)
             $scope.trigger = true;
+            setTimeout(function(){$scope.trigger = false}, 1000);
           }
         })
 
@@ -103,5 +104,18 @@ angular.module('kwiki.chat',[])
     AuthFactory.logOut();
   };
 
-}]);
+}])
+
+.animation('.slide', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      console.log("ELEMENT")
+      console.log(element);
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true
+      })
+    }
+  }
+}])
 
