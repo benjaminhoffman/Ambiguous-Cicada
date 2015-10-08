@@ -1,4 +1,5 @@
 {
   "name": "Ambiguous-Cicada-Ionic",
-  "app_id": ""
+  "app_id": "",
+  "defaultBrowser": true
 }
