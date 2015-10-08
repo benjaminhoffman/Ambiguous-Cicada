@@ -32,19 +32,13 @@ module.exports = {
       }
 
       // if indicates they like (or don't like) sports, update the db
-      if (req.body.interests.sports) {
         profile.sports = req.body.interests.sports;
-      }
       
       // if indicates they like (or don't like) beauty, update the db
-      if (req.body.interests.beauty) {
         profile.beauty = req.body.interests.beauty;
-      }
       
       // if indicates they like (or don't like) other, update the db
-      if (req.body.interests.other) {
         profile.other = req.body.interests.other;
-      }
       
       // callback method to be run after our db is updated
       profile.save(function(err) {
