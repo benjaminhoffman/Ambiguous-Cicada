@@ -11,7 +11,7 @@ Auth.signup = function(username, password) {
       } else {
         newUser = {
           username: username,
-          password: password
+          password: password,
         };
         User.create(newUser, function(err, user) {
           if (err) reject(err);
@@ -38,7 +38,12 @@ Auth.login = function(username, password) {
             if (foundUser) {
               resolve({
                 id: user._id,
-                name: user.username
+                name: user.username,
+                gender: user.gender,
+                prefGender: user.prefGender,
+                sports: user.sports,
+                beauty: user.beauty,
+                other: user.other
               });
             } else {
               reject(new Error('User not found!'));
