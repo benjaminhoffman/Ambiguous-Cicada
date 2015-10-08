@@ -110,3 +110,45 @@ div.image {
     line-height: 29px;
     overflow: hidden;
 }
+
+.cho {
+  background-image: url('../img/cho.png');
+  background-size: 100%;
+  background-repeat: no-repeat;;
+  width: 30px;
+  height: 30px;
+  z-index: 100;
+}
+
+img.slide.ng-enter.cho {
+  transition:1s linear all;
+  transform:translateY(500px);
+  -webkit-transition:1s linear all;
+  -webkit-transform:translateY(500px);
+  /*opacity:0;*/
+}
+
+img.slide.ng-enter.ng-enter-active.cho {
+  transform:translateY(0);
+  /*opacity:1;*/
+}
+
+
+.tempest {
+  background-image: url('../img/tempest.png');
+  background-size: 100%;
+  background-repeat: no-repeat;;
+  width: 30px;
+  height: 30px;
+  z-index: 100;
+}
+
+.tempest.ng-enter {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+.tempest.ng-enter-active {
+  opacity:1;
+}
+

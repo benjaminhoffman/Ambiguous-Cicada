@@ -30,6 +30,10 @@ angular.module('kwiki.chat',[])
 
 .controller('ChatCtrl', ['$rootScope', '$state', '$scope', 'ChatFactory', 'AuthFactory', '$ionicGesture', function ($rootScope, $state, $scope, ChatFactory, AuthFactory, $ionicGesture) {
 
+  $scope.trigger = false;
+  $scope.triggerWord = '';
+  var triggerWords = ['cho', 'tempest', 'birthday', 'tea']
+
   $scope.messages = [];
   $scope.draw = false;
 
@@ -52,13 +56,37 @@ angular.module('kwiki.chat',[])
         $scope.messages = [];
         $state.go('match');
       } else {
+
+        var parseText = message.text.split(" ");
+
+        parseText.forEach(function(text) {
+          if(triggerWords.indexOf(text) !== -1) {
+            message.triggerWord = text;
+            $scope.triggerWord = text;
+            console.log($scope.triggerWord)
+            $scope.trigger = true;
+            setTimeout(function(){$scope.trigger = false}, 1000);
+          }
+        })
+
         $scope.messages.push(message);
+
+        if(message.triggerWord) {
+          $scope.makeItRain(message.triggerWord);
+        }
+
         $scope.$apply();
       }
     });
   };
 
+  $scope.makeItRain = function(triggerWord) {
+    console.log("making it rain");
+
+  };
+
   $scope.sendMessage = function () {
+
     if( $scope.message ){
       ChatFactory.postMessage(this.message);
       $scope.messages.push({
@@ -76,5 +104,18 @@ angular.module('kwiki.chat',[])
     AuthFactory.logOut();
   };
 
-}]);
+}])
+
+.animation('.slide', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      console.log("ELEMENT")
+      console.log(element);
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true
+      })
+    }
+  }
+}])
 
