@@ -13,7 +13,9 @@ var UserSchema = new db.Schema({
     required: true
   },
 
-  zipcode: Number,
+  gender: String,
+
+  prefGender: String,
 
   sports: {
     type: Boolean,

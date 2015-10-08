@@ -21,24 +21,42 @@ module.exports = {
         res.send(err);
       }
 
-      // if user updates their zipcode, update the db
-      if (req.body.zipcode) {
-        profile.zipcode = req.body.zipcode;
+      // logs the data coming in from the PUT req:
+        console.log("USER'S GENDER: ")
+        console.log(req.body.gender)
+        console.log("USER'S PREF GENDER: ")
+        console.log(req.body.prefGender)
+        console.log("USER'S INTERESTS: ")
+        console.log(req.body.interests)
+
+      // if user updates their gender, update the db
+      if (req.body.gender) {
+        profile.gender = req.body.gender;
+        console.log('gender updated!')
+      }
+
+      // if user updates their gender preference, update the db
+      if (req.body.prefGender) {
+        profile.prefGender = req.body.prefGender;
+        console.log('prefGender updated!')
       }
 
       // if indicates they like (or don't like) sports, update the db
-      if (req.body.sports) {
-        profile.sports = req.body.sports;
+      if (req.body.interests.sports) {
+        profile.sports = req.body.interests.sports;
+        console.log('sports updated!')
       }
       
       // if indicates they like (or don't like) beauty, update the db
-      if (req.body.beauty) {
-        profile.beauty = req.body.beauty;
+      if (req.body.interests.beauty) {
+        profile.beauty = req.body.interests.beauty;
+        console.log('beauty updated!')
       }
       
       // if indicates they like (or don't like) other, update the db
-      if (req.body.other) {
-        profile.other = req.body.other;
+      if (req.body.interests.other) {
+        profile.other = req.body.interests.other;
+        console.log('other updated!')
       }
       
       // callback method to be run after our db is updated
@@ -46,7 +64,6 @@ module.exports = {
         if (err) {
           res.send(err);
         }
-        console.log(profile)
         res.json({ message: 'user updated!' })
       })
     });
