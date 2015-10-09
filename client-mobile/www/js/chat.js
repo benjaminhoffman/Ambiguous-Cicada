@@ -47,7 +47,8 @@ angular.module('kwiki.chat',[])
   var triggerWords = ['cho', 'tempest', 'birthday', 'tea'];
 
 
-  $scope.messages = { text: [] };
+  // $scope.messages = { text: [], pictures: [ ] };
+  $scope.messages = [];
 
   $scope.draw = false;
 
@@ -56,6 +57,7 @@ angular.module('kwiki.chat',[])
 
   $scope.message = {
     userName: $rootScope.user.name,
+    // userName: 'Taylor',
     text: ''
   };
 
@@ -90,6 +92,18 @@ angular.module('kwiki.chat',[])
       };
       $scope._clientLine($scope.initialThumbCoordinates, coords);
     }, $scope.can);
+  };
+
+  $scope._drawServerPic = function(ctx, coords) {
+    for(var i=0; i < coords.length; i++ ) {
+      var from = coords[i].from;
+      var to = coords[i].to;
+
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.stroke();
+    }
+
   };
   
   $scope.toggleDrawView = function() {
@@ -153,6 +167,15 @@ angular.module('kwiki.chat',[])
 
     ChatFactory.loadPicture(function (coordinates) {
       console.log('received a picture from the server with coordinates', coordinates);
+      var msgCanvas = document.createElement('canvas');
+      msgCanvas.id = 'picmsg-' + $scope.messages.pictures.length;
+      $scope.messages.pictures.push({el: msgCanvas, userName:$scope.message.userName });
+      $scope.$apply();
+      var parentCan = angular.element(document.getElementsByClassName('pic'));
+      var lastChild = parentCan[parentCan.length-1];
+      lastChild.appendChild(msgCanvas);
+      $scope._drawServerPic(msgCanvas.getContext('2d'), coordinates);
+
     });
   };
 
@@ -161,12 +184,14 @@ angular.module('kwiki.chat',[])
     if( $scope.drawMessageCoordinates.length > 0 ) {
       console.log('length of draw object before sending', $scope.drawMessageCoordinates.length);
       ChatFactory.postPicture($scope.drawMessageCoordinates);
+      $scope.drawMessageCoordinates = [];
       return;
     }
 
     if( $scope.message ){
       ChatFactory.postMessage(this.message);
       $scope.messages.text.push({
+        type:'text',
         userName: this.message.userName,
         text: this.message.text
       });
