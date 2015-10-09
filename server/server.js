@@ -65,6 +65,10 @@ io.of('/chat').on('connection', function (socket) {
       socket.to(chatRoomId).broadcast.emit('message', message);
       chatCtrl.addMessage(chatRoomId, message);
     });
+    socket.on('picture', function (coordinates) {
+      console.log('LENGTH OF PICTURE COORDINATES --->', coordinates.length);
+      console.log(coordinates);
+    });
   });
   socket.on('leaveChat', function (chatRoomId) {
     socket.to(chatRoomId).broadcast.emit('leaveChat');
