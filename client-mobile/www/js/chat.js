@@ -24,6 +24,11 @@ angular.module('kwiki.chat',['ionic'])
     this.socket.emit('message', message);
   };
 
+  chatFact.postPicture = function (picture) {
+    console.log('factory hears picture');
+    this.socket.emit('picture', picture);
+  };
+
   return chatFact;
 
 }])
@@ -163,6 +168,12 @@ angular.module('kwiki.chat',['ionic'])
   };
 
   $scope.sendMessage = function () {
+
+    if( $scope.drawMessageCoordinates.length > 0 ) {
+      console.log('length of draw object before sending', $scope.drawMessageCoordinates.length);
+      ChatFactory.postPicture($scope.drawMessageCoordinates);
+      return;
+    }
 
     if( $scope.message ){
       ChatFactory.postMessage(this.message);
