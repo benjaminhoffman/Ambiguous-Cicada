@@ -63,7 +63,6 @@ angular.module('kwiki.chat',[])
 
   $scope._clientLine = function(from, to) {
     var ctx = $scope.can[0].getContext('2d');
-    console.log('from :', from, ' to: ->', to);
     ctx.moveTo(from.x, from.y);
     ctx.lineTo(to.x, to.y);
     ctx.stroke();
