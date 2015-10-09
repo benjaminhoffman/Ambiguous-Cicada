@@ -1,4 +1,4 @@
-angular.module('kwiki.chat',['ionic'])
+angular.module('kwiki.chat',[])
 
 .factory('ChatFactory', ['$http', '$rootScope', 'SocketFactory', '$window', function ($http, $rootScope, SocketFactory, $window) {
 
@@ -38,37 +38,6 @@ angular.module('kwiki.chat',['ionic'])
   $scope.trigger = false;
   $scope.triggerWord = '';
   var triggerWords = ['cho', 'tempest', 'birthday', 'tea'];
-
-  $scope.style = [
-    {
-      'transition': '3s linear'
-    },
-    {
-      'transition': '2s linear'
-    },
-    {
-      'transition': '5s linear'
-    },
-    {
-      'transition': '2s linear'
-    },
-    {
-      'transition': '1s linear'
-    },
-    {
-      'transition': '4s linear'
-    },
-    {
-      'transition': '5s linear'
-    },
-    {
-      'transition': '3s linear'
-    },
-    {
-      'transition': '2s linear'
-    }
-
-  ];
 
   $scope.messages = [];
   $scope.draw = false;
@@ -144,25 +113,33 @@ angular.module('kwiki.chat',['ionic'])
         $scope.messages = [];
         $state.go('match');
       } else {
-
         var parseText = message.text.split(" ");
-
-        parseText.forEach(function(text) {
-          if(triggerWords.indexOf(text) !== -1) {
-            message.triggerWord = text;
-            $scope.triggerWord = text;
-            $scope.trigger = true;
-            console.log("settimeout: " + $scope.trigger)
-            setTimeout(function(){
-              $scope.trigger = false;
-              console.log("settimeout: " + $scope.trigger)
-
-            }, 1000);
-          }
-        })
-
         $scope.messages.push(message);
         $scope.$apply();
+        triggerWords.forEach(function(word) {
+          console.log(word);
+          console.log(message.text);
+          if(message.text.search(word) !== -1) {
+            var animateStr
+            $scope.styles = [];
+            for( var i = 0; i < 10; i++ ) {
+              animateStr = (Math.random() * 2 + 0.5).toFixed(2) + 's linear';
+              $scope.styles.push({
+                'left': (Math.random() * 100).toFixed(2) - 5 + '%',
+                'animation': animateStr,
+                '-webkit-animation': animateStr
+              });
+            }
+            message.triggerWord = word;
+            $scope.triggerWord = word;
+            $scope.trigger = true;
+            $scope.$apply();
+            setTimeout(function(){
+              $scope.trigger = false;
+              $scope.$apply();
+            }, 2500);
+          }
+        });
       }
     });
   };
@@ -195,17 +172,135 @@ angular.module('kwiki.chat',['ionic'])
 }])
 
 
-.animation('.slide', ['$animateCss', function($animateCss) {
+.animation('.rain', ['$animateCss', function($animateCss) {
   return {
-    enter: function(element, done) {
+    enter: function(element) {
+      console.log(element);
       return $animateCss(element, {
         event: 'enter',
-        structural: true
-        // from: { top:0 },
-        // to: { top: 800 }
+        structural: true,
+        from: { top: '0%', opacity: 1 },
+        to: { top: '100%', opacity: 0.2 }
       })
     }
   }
 }])
+.animation('.rain1', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      console.log(element);
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true,
+        from: { top: '0%', opacity: 1 },
+        to: { top: '100%', opacity: 0.2 }
+      })
+    }
+  }
+}])
+.animation('.rain2', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      console.log(element);
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true,
+        from: { top: '0%', opacity: 1 },
+        to: { top: '100%', opacity: 0.2 }
+      })
+    }
+  }
+}])
+.animation('.rain3', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      console.log(element);
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true,
+        from: { top: '0%', opacity: 1 },
+        to: { top: '100%', opacity: 0.2 }
+      })
+    }
+  }
+}])
+.animation('.rain4', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      console.log(element);
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true,
+        from: { top: '0%', opacity: 1 },
+        to: { top: '100%', opacity: 0.2 }
+      })
+    }
+  }
+}])
+.animation('.rain5', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      console.log(element);
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true,
+        from: { top: '0%', opacity: 1 },
+        to: { top: '100%', opacity: 0.2 }
+      })
+    }
+  }
+}])
+.animation('.rain6', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      console.log(element);
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true,
+        from: { top: '0%', opacity: 1 },
+        to: { top: '100%', opacity: 0.2 }
+      })
+    }
+  }
+}])
+.animation('.rain7', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      console.log(element);
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true,
+        from: { top: '0%', opacity: 1 },
+        to: { top: '100%', opacity: 0.2 }
+      })
+    }
+  }
+}])
+.animation('.rain8', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      console.log(element);
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true,
+        from: { top: '0%', opacity: 1 },
+        to: { top: '100%', opacity: 0.2 }
+      })
+    }
+  }
+}])
+.animation('.rain9', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      console.log(element);
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true,
+        from: { top: '0%', opacity: 1 },
+        to: { top: '100%', opacity: 0.2 }
+      })
+    }
+  }
+}]);
 
 
