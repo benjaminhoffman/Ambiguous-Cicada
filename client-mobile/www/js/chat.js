@@ -26,13 +26,11 @@ angular.module('kwiki.chat',[])
   };
 
   chatFact.postPicture = function (picture) {
-    console.log('factory hears picture');
     this.socket.emit('picture', picture);
   };
 
   chatFact.loadPicture = function(callback) {
     this.socket.on('picture', function (coords) {
-      console.log('I received a picture from the server with coordinates', coords);
       callback(coords);
     });
 
@@ -128,8 +126,6 @@ angular.module('kwiki.chat',[])
         $scope.messages.text.push(message);
         $scope.$apply();
         triggerWords.forEach(function(word) {
-          console.log(word);
-          console.log(message.text);
           if(message.text.search(word) !== -1) {
             var animateStr
             $scope.styles = [];
@@ -156,7 +152,7 @@ angular.module('kwiki.chat',[])
     });
 
     ChatFactory.loadPicture(function (coordinates) {
-      console.log('controller hears the picture ', coordinates);
+      console.log('received a picture from the server with coordinates', coordinates);
     });
   };
 
