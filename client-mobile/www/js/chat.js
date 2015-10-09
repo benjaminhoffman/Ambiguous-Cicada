@@ -63,7 +63,6 @@ angular.module('kwiki.chat',[])
 
   $scope._clientLine = function(from, to) {
     var ctx = $scope.can[0].getContext('2d');
-    console.log('from :', from, ' to: ->', to);
     ctx.moveTo(from.x, from.y);
     ctx.lineTo(to.x, to.y);
     ctx.stroke();
@@ -104,7 +103,9 @@ angular.module('kwiki.chat',[])
 
   };
   
-  $scope.toggleDrawView = function() {
+  $scope.toggleDrawView = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
     $scope.draw = !$scope.draw;
 
     if($scope.draw) {
