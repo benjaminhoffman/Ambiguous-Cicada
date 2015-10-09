@@ -7,19 +7,11 @@ angular.module('kwiki.match', ['ngCordova'])
     this.socket = SocketFactory.connect("match");
   };
 
-  matchFact.postMatch = function () {
+  matchFact.postMatch = function (coords) {
     var self = this;
     if( $rootScope.user.address.toUpperCase() === "CURRENT LOCATION" ) {
-      console.log('beep boop');
-      var posOptions = {timeout: 10000, enableHighAccuracy: false};
-      $cordovaGeolocation.getCurrentPosition(posOptions)
-      .then(function (position) {
-        $rootScope.user.coords = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        self.socket.emit('matching', $rootScope.user);
-      });
+      $rootScope.user.coords = coords;
+      self.socket.emit('matching', $rootScope.user);
     } else {
       this.socket.emit('matching', $rootScope.user);
     }
@@ -38,12 +30,23 @@ angular.module('kwiki.match', ['ngCordova'])
   return matchFact;
 }])
 
-.controller('MatchCtrl', ['$rootScope', '$state', '$scope', 'MatchFactory', 'AuthFactory', function ($rootScope, $state, $scope, MatchFactory, AuthFactory) {
+.controller('MatchCtrl', ['$rootScope', '$state', '$scope', 'MatchFactory', 'AuthFactory', '$cordovaGeolocation', function ($rootScope, $state, $scope, MatchFactory, AuthFactory, $cordovaGeolocation) {
   $rootScope.disableButton = false;
   defaultSearch = {
-    distance: 5
+    distance: 1
   };
   $rootScope.user.search = $rootScope.user.search || defaultSearch;
+
+  $scope.map = { center: { latitude: 35.3580, longitude: 138.7310 }, zoom: 13 };
+  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  $cordovaGeolocation.getCurrentPosition(posOptions)
+  .then(function (position) {
+    $scope.mapCoords = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+    $scope.map = { center: { latitude: $scope.mapCoords.lat, longitude: $scope.mapCoords.lng }, zoom: 13 };
+  });
 
   $scope.connect = function() {
     MatchFactory.connectSocket();
@@ -51,7 +54,7 @@ angular.module('kwiki.match', ['ngCordova'])
 
   $scope.submit = function () {
     $rootScope.disableButton = true;
-    MatchFactory.postMatch();
+    MatchFactory.postMatch($scope.mapCoords);
     $state.go('load');
   };
 

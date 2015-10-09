@@ -10,12 +10,19 @@
       Logout
     </button>
   </ion-nav-buttons>
- -->  <ion-content>
-  
+ -->  
+    <div class="has-header">
+      <ui-gmap-google-map center="map.center" zoom="map.zoom">
+        <ui-gmap-marker idkey="1" coords="map.center"></ui-gmap-marker>
+        <ui-gmap-circle center="map.center" radius="$root.user.search.distance * 1609.34" stroke="{weight: 0.1}" fill="{color: '#FF0000', opacity: 0.2}">
+        </ui-gmap-circle>
+      </ui-gmap-google-map>
+    </div>
+  <ion-content class="ionmap">
     <div id="matchbox-container" class="matchbox" ng-init="connect()">
       <form ng-submit="submit()">
-        <div class="inputs">
-          <input type="text" placeholder="Enter an address or zip" ng-model="$root.user.address" list="locations" class="matchbox-location">
+        <div>
+          <input type="text" placeholder="Enter an address or zip" ng-model="$root.user.address" list="locations" class="matchbox-location" value="CURRENT LOCATION">
           <datalist id="locations">
             <option value="CURRENT LOCATION">
           </datalist>
@@ -29,7 +36,7 @@
           <div class="item range range-positive">
             <span class="input-label">Distance: {{$root.user.search.distance | number : 1}} mi</span>
             <i class="icon ion-minus"></i>
-            <input type="range" name="distance" min=0 max=10 value=5 step=0.1 ng-model="$root.user.search.distance">
+            <input type="range" name="distance" min="0" max="5" step="0.1" ng-model="$root.user.search.distance">
             <i class="icon ion-plus"></i>
           </div>
 

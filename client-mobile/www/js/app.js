@@ -11,8 +11,24 @@ angular.module('kwiki', [
   'kwiki.match',
   'kwiki.socket',
   'kwiki.chat',
-  'kwiki.profile'
+  'kwiki.profile',
+  'uiGmapgoogle-maps'
 ])
+
+.config(function(uiGmapGoogleMapApiProvider) {
+  // Set up google maps api
+  var mapsOptions = {
+    v: '3.20', 
+    libraries: 'weather,geometry,visualization'
+  };
+  if( ionic.Platform.isIOS() ) {
+    mapsOptions.key = 'AIzaSyBEZ9K1-NzREfpqBIcOJ_-lNEvH25MSgMQ';
+  } else if ( ionic.Platform.isAndroid() ) {
+    mapsOptions.key = 'AIzaSyAZotpH_3YZKmqZ5ofQF-_aMiTYCUxZ64c';
+  }
+  console.log(mapsOptions);
+  uiGmapGoogleMapApiProvider.configure(mapsOptions);
+})
 
 .run(function($ionicPlatform, $rootScope) {
   $rootScope.host = 'http://localhost:3000';
@@ -32,7 +48,7 @@ angular.module('kwiki', [
 
 })
 
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
 
   $httpProvider.defaults.headers.common = {
     'Access-Control-Allow-Origin' : '*',
