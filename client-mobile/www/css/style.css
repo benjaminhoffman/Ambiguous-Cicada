@@ -111,29 +111,29 @@ div.image {
     overflow: hidden;
 }
 
-.trigger-word {
+img {
   /*background-image: url('../img/cho.png');*/
-  background-size: 100%;
-  background-repeat: no-repeat;;
+  /*background-size: 100%;
+  background-repeat: no-repeat;*/
   width: 30px;
   height: 30px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 8px;
+  margin-right: 8px;
   float: right;
   z-index: 100;
 }
 
+
 img.slide.ng-enter.trigger-word {
-  /*transition:3s linear all;*/
-  transform:translateY(0px);
-  /*-webkit-transition:3s linear all;*/
   -webkit-transform:translateY(0px);
-  /*opacity:0;*/
+  -webkit-animation-fill-mode: forwards;
+  opacity:1;
 }
+
 
 img.slide.ng-enter.ng-enter-active.trigger-word {
-  transform:translateY(1000px);
-  /*opacity:1;*/
-}
+  -webkit-transform:translateY(700px);
 
+  opacity:0;
+}
 

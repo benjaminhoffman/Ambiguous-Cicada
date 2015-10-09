@@ -36,31 +36,31 @@ angular.module('kwiki.chat',['ionic'])
 
   $scope.style = [
     {
-      'transition': '3s linear all'
+      'transition': '3s linear'
     },
     {
-      'transition': '1s linear all'
+      'transition': '2s linear'
     },
     {
-      'transition': '1.5s linear all'
+      'transition': '5s linear'
     },
     {
-      'transition': '2s linear all'
+      'transition': '2s linear'
     },
     {
-      'transition': '1s linear all'
+      'transition': '1s linear'
     },
     {
-      'transition': '4s linear all'
+      'transition': '4s linear'
     },
     {
-      'transition': '5s linear all'
+      'transition': '5s linear'
     },
     {
-      'transition': '3s linear all'
+      'transition': '3s linear'
     },
     {
-      'transition': '2s linear all'
+      'transition': '2s linear'
     }
 
   ];
@@ -133,26 +133,20 @@ angular.module('kwiki.chat',['ionic'])
           if(triggerWords.indexOf(text) !== -1) {
             message.triggerWord = text;
             $scope.triggerWord = text;
-            console.log($scope.triggerWord)
             $scope.trigger = true;
-            setTimeout(function(){$scope.trigger = false}, 1000);
+            console.log("settimeout: " + $scope.trigger)
+            setTimeout(function(){
+              $scope.trigger = false;
+              console.log("settimeout: " + $scope.trigger)
+
+            }, 1000);
           }
         })
 
         $scope.messages.push(message);
-
-        if(message.triggerWord) {
-          $scope.makeItRain(message.triggerWord);
-        }
-
         $scope.$apply();
       }
     });
-  };
-
-  $scope.makeItRain = function(triggerWord) {
-    console.log("making it rain");
-
   };
 
   $scope.sendMessage = function () {
@@ -179,12 +173,12 @@ angular.module('kwiki.chat',['ionic'])
 
 .animation('.slide', ['$animateCss', function($animateCss) {
   return {
-    enter: function(element) {
-      console.log("ELEMENT")
-      console.log(element);
+    enter: function(element, done) {
       return $animateCss(element, {
         event: 'enter',
         structural: true
+        // from: { top:0 },
+        // to: { top: 800 }
       })
     }
   }
