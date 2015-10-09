@@ -14,6 +14,7 @@ angular.module('kwiki.chat',[])
     this.socket.on('leaveChat', function () {
       callback(null, true);
     });
+    
   };
 
   chatFact.leaveChat = function () {
@@ -25,9 +26,15 @@ angular.module('kwiki.chat',[])
   };
 
   chatFact.postPicture = function (picture) {
-    console.log('factory hears picture');
     this.socket.emit('picture', picture);
   };
+
+  chatFact.loadPicture = function(callback) {
+    this.socket.on('picture', function (coords) {
+      callback(coords);
+    });
+
+  }
 
   return chatFact;
 
@@ -39,7 +46,9 @@ angular.module('kwiki.chat',[])
   $scope.triggerWord = '';
   var triggerWords = ['cho', 'tempest', 'birthday', 'tea'];
 
-  $scope.messages = [];
+
+  $scope.messages = { text: [] };
+
   $scope.draw = false;
 
   $scope._drawGesture = undefined;
@@ -110,15 +119,13 @@ angular.module('kwiki.chat',[])
   $scope.loadChat = function() {
     ChatFactory.loadChat(function (message, leavechat) {
       if (leavechat) {
-        $scope.messages = [];
+        $scope.messages.text = [];
         $state.go('match');
       } else {
         var parseText = message.text.split(" ");
-        $scope.messages.push(message);
+        $scope.messages.text.push(message);
         $scope.$apply();
         triggerWords.forEach(function(word) {
-          console.log(word);
-          console.log(message.text);
           if(message.text.search(word) !== -1) {
             var animateStr
             $scope.styles = [];
@@ -140,7 +147,12 @@ angular.module('kwiki.chat',[])
             }, 2500);
           }
         });
+
       }
+    });
+
+    ChatFactory.loadPicture(function (coordinates) {
+      console.log('received a picture from the server with coordinates', coordinates);
     });
   };
 
@@ -154,7 +166,7 @@ angular.module('kwiki.chat',[])
 
     if( $scope.message ){
       ChatFactory.postMessage(this.message);
-      $scope.messages.push({
+      $scope.messages.text.push({
         userName: this.message.userName,
         text: this.message.text
       });
