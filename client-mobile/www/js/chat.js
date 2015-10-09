@@ -69,30 +69,43 @@ angular.module('kwiki.chat',['ionic'])
   $scope.draw = false;
 
   $scope._drawGesture = undefined;
+  $scope.initialThumbCoordinates = undefined;
 
   $scope.message = {
     userName: $rootScope.user.name,
     text: ''
   };
 
-  $scope._stopListeningToDraw = function() {
-    $scope._drawGesture = $ionicGesture.on('drag', function (evt){
-      var coords = {
-        x:evt.gesture.srcEvent.layerX, 
-        y:evt.gesture.srcEvent.layerY  
-      };
-      console.log(coords);
-    }, $scope.can);
+  $scope.drawMessageCoordinates = [];
 
+  $scope._clientLine = function(from, to) {
+    var ctx = $scope.can[0].getContext('2d');
+    console.log('from :', from, ' to: ->', to);
+    ctx.moveTo(from.x, from.y);
+    ctx.lineTo(to.x, to.y);
+    ctx.stroke();
+    $scope.initialThumbCoordinates = to;
+    $scope.drawMessage.push({ from: from, to: to });
+  };
+
+  $scope._stopListeningToDraw = function() {
+    if(!$scope._drawGesture) { return ; }
+    $ionicGesture.off($scope._drawGesture, 'drag');
   };
 
   $scope._listenToDraw = function(){
+    var _begin = $ionicGesture.on('dragstart', function (evt){
+      $scope.initialThumbCoordinates = {x: evt.gesture.srcEvent.layerX, y:evt.gesture.srcEvent.layerY };
+      console.log('start of scope drag', $scope.initialThumbCoordinates);
+    }, $scope.can);
+    $ionicGesture.off(_begin, 'dragstart');
+
     $scope._drawGesture = $ionicGesture.on('drag', function (evt){
       var coords = {
         x:evt.gesture.srcEvent.layerX, 
         y:evt.gesture.srcEvent.layerY  
       };
-      console.log(coords);
+      $scope._clientLine($scope.initialThumbCoordinates, coords);
     }, $scope.can);
   };
   
