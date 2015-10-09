@@ -85,7 +85,7 @@ angular.module('kwiki.chat',['ionic'])
     ctx.lineTo(to.x, to.y);
     ctx.stroke();
     $scope.initialThumbCoordinates = to;
-    $scope.drawMessage.push({ from: from, to: to });
+    $scope.drawMessageCoordinates.push({ from: from, to: to });
   };
 
   $scope._stopListeningToDraw = function() {
