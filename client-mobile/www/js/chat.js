@@ -104,7 +104,9 @@ angular.module('kwiki.chat',[])
 
   };
   
-  $scope.toggleDrawView = function() {
+  $scope.toggleDrawView = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
     $scope.draw = !$scope.draw;
 
     if($scope.draw) {
