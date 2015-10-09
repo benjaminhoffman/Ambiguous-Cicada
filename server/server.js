@@ -61,7 +61,7 @@ io.of('/chat').on('connection', function (socket) {
   socket.on('loadChat', function (chatRoomId) {
     socket.join(chatRoomId);
     socket.on('message', function (message) {
-      console.log('Emitted from client to server');
+      console.log('Emitted from client to server', message);
       socket.to(chatRoomId).broadcast.emit('message', message);
       chatCtrl.addMessage(chatRoomId, message);
     });
