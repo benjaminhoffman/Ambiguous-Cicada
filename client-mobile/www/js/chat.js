@@ -47,7 +47,6 @@ angular.module('kwiki.chat',[])
   var triggerWords = ['cho', 'tempest', 'birthday', 'tea'];
 
 
-  // $scope.messages = { text: [], pictures: [ ] };
   $scope.messages = [];
 
   $scope.draw = false;
@@ -57,7 +56,6 @@ angular.module('kwiki.chat',[])
 
   $scope.message = {
     userName: $rootScope.user.name,
-    // userName: 'Taylor',
     text: ''
   };
 
@@ -137,7 +135,7 @@ angular.module('kwiki.chat',[])
         $state.go('match');
       } else {
         var parseText = message.text.split(" ");
-        $scope.messages.text.push(message);
+        $scope.messages.push(message);
         $scope.$apply();
         triggerWords.forEach(function(word) {
           if(message.text.search(word) !== -1) {
@@ -165,16 +163,15 @@ angular.module('kwiki.chat',[])
       }
     });
 
-    ChatFactory.loadPicture(function (coordinates) {
-      console.log('received a picture from the server with coordinates', coordinates);
+    ChatFactory.loadPicture(function (imageDirections) {
       var msgCanvas = document.createElement('canvas');
-      msgCanvas.id = 'picmsg-' + $scope.messages.pictures.length;
-      $scope.messages.pictures.push({el: msgCanvas, userName:$scope.message.userName });
+      // msgCanvas.id = 'picmsg-' + $scope.messages.length;
+      $scope.messages.push(imageDirections);
       $scope.$apply();
-      var parentCan = angular.element(document.getElementsByClassName('pic'));
-      var lastChild = parentCan[parentCan.length-1];
-      lastChild.appendChild(msgCanvas);
-      $scope._drawServerPic(msgCanvas.getContext('2d'), coordinates);
+      var chatCanvas = angular.element(document.getElementsByClassName('pic'));
+      var canvasContainer = chatCanvas[chatCanvas.length-1];
+      canvasContainer.appendChild(msgCanvas);
+      $scope._drawServerPic(msgCanvas.getContext('2d'), imageDirections.text);
 
     });
   };
@@ -183,14 +180,16 @@ angular.module('kwiki.chat',[])
 
     if( $scope.drawMessageCoordinates.length > 0 ) {
       console.log('length of draw object before sending', $scope.drawMessageCoordinates.length);
-      ChatFactory.postPicture($scope.drawMessageCoordinates);
+      $scope.message = {text: $scope.drawMessageCoordinates, type: 'pic', userName: $scope.message.userName};
+      ChatFactory.postPicture($scope.message);
       $scope.drawMessageCoordinates = [];
       return;
     }
 
     if( $scope.message ){
+      this.message.type = 'text';
       ChatFactory.postMessage(this.message);
-      $scope.messages.text.push({
+      $scope.messages.push({
         type:'text',
         userName: this.message.userName,
         text: this.message.text

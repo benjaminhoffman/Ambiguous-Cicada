@@ -21,15 +21,11 @@
         <div class="col">
           <div class="chatbox-container">
             <ul class="chatbox">
-              <li class="message-item" ng-repeat="message in messages.text track by $index">
+              <li ng-switch="message.type" class="message-item" ng-repeat="message in messages track by $index">
                 <span class="user">{{ message.userName }} </span><br>
-                <span class="message">{{ message.text }}</span>
+                <span ng-switch-when="text" class="message">{{ message.text }}</span>
+                <span ng-switch-when="pic" class="pic"></span>
               </li>
-              <li class="message-item" ng-repeat="picture in messages.pictures">
-                <span class="user"> {{ picture.userName}} </span><br>
-                <span class="pic"></span><br>
-              </li>
-
             </ul>
           </div>
           <form ng-submit="sendMessage()">
