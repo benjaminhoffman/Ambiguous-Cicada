@@ -21,12 +21,13 @@ angular.module('kwiki.profile', [])
   }
 })
 
-.controller('ProfileCtrl', function ($rootScope, $state, $scope, ProfileFactory, AuthFactory) {
+.controller('ProfileCtrl', function ($state, $scope, ProfileFactory) {
 
   $scope.handleSubmit = function(userProfile) {
 
     ProfileFactory.updateProfileInfo(userProfile)
       .then(function(res) {
+        $state.go('match');
       })
       .catch(function(err) {
         console.log(err);
