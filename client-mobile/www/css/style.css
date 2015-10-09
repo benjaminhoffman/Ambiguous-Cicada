@@ -1,4 +1,7 @@
 /* Empty. Add your own CSS if you like */
+.bar {
+  padding: 0;
+}
 
 .error {
   color: red;

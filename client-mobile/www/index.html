@@ -18,29 +18,27 @@
     <script src="js/profile.js"></script>
     <script src="js/socket.js"></script>
   </head>
-  <body ng-app="kwiki">
-    <ion-nav-bar class="bar-calm">
-        <ion-nav-back-button class="button-clear">
-            <i class="ion-arrow-left-c"></i>Back
-        </ion-nav-back-button>
-    </ion-nav-bar>
-
-    <ion-nav-view></ion-nav-view>
-
-    <div class="tabs tabs-icon-top">
-      <a href="#/match" class="tab-item">
-        <i class="icon ion-person-stalker"></i>
-        Match
-      </a>
-      <a href="#/chat" class="tab-item">
-        <i class="icon ion-chatboxes"></i>
-        Chat
-      </a>
-      <a href="#/profile" class="tab-item">
-        <i class="icon ion-social-github"></i>
-        Profile
-      </a>
+  <body>
+    <div ng-app="kwiki">
+      <ion-nav-bar class="bar-calm">
+      </ion-nav-bar>
+      <ion-nav-view></ion-nav-view>
+      <ion-footer-bar ng-show="user">
+        <div class="tabs tabs-icon-top">
+          <a href="#/match" class="tab-item">
+            <i class="icon ion-person-stalker"></i>
+            Match
+          </a>
+          <a href="#/chat" class="tab-item">
+            <i class="icon ion-chatboxes"></i>
+            Chat
+          </a>
+          <a href="#/profile" class="tab-item">
+            <i class="icon ion-social-github"></i>
+            Profile
+          </a>
+        </div>
+      </ion-footer-bar>
     </div>
-
   </body>
 </html>
