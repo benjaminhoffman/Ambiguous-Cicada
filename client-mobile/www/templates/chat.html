@@ -6,17 +6,16 @@
     </ion-nav-buttons>
     <ion-content>
 
-    <img ng-src="../img/{{triggerWord}}.png" ng-class="{'trigger-word': triggerWord}" ng-style="style[0]" ng-if="trigger" class="slide">
-    <img ng-src="../img/{{triggerWord}}.png" ng-class="{'trigger-word': triggerWord}" ng-style="style[1]" ng-if="trigger" class="slide">
-    <img ng-src="../img/{{triggerWord}}.png" ng-class="{'trigger-word': triggerWord}" ng-style="style[2]" ng-if="trigger" class="slide">
-    <img ng-src="../img/{{triggerWord}}.png" ng-class="{'trigger-word': triggerWord}" ng-style="style[3]" ng-if="trigger" class="slide">
-    <img ng-src="../img/{{triggerWord}}.png" ng-class="{'trigger-word': triggerWord}" ng-style="style[4]" ng-if="trigger" class="slide">
-    <img ng-src="../img/{{triggerWord}}.png" ng-class="{'trigger-word': triggerWord}" ng-style="style[5]" ng-if="trigger" class="slide">
-    <img ng-src="../img/{{triggerWord}}.png" ng-class="{'trigger-word': triggerWord}" ng-style="style[6]" ng-if="trigger" class="slide">
-    <img ng-src="../img/{{triggerWord}}.png" ng-class="{'trigger-word': triggerWord}" ng-style="style[7]" ng-if="trigger" class="slide">
-    <img ng-src="../img/{{triggerWord}}.png" ng-class="{'trigger-word': triggerWord}" ng-style="style[8]" ng-if="trigger" class="slide">
-    
-    {{trigger}}
+      <img ng-src="img/{{triggerWord}}.png" ng-style="styles[0]" ng-class="triggerWord" class="rain" ng-if="trigger">      
+      <img ng-src="img/{{triggerWord}}.png" ng-style="styles[1]" ng-class="triggerWord" class="rain1" ng-if="trigger">      
+      <img ng-src="img/{{triggerWord}}.png" ng-style="styles[2]" ng-class="triggerWord" class="rain2" ng-if="trigger">      
+      <img ng-src="img/{{triggerWord}}.png" ng-style="styles[3]" ng-class="triggerWord" class="rain3" ng-if="trigger">      
+      <img ng-src="img/{{triggerWord}}.png" ng-style="styles[4]" ng-class="triggerWord" class="rain4" ng-if="trigger">      
+      <img ng-src="img/{{triggerWord}}.png" ng-style="styles[5]" ng-class="triggerWord" class="rain5" ng-if="trigger">      
+      <img ng-src="img/{{triggerWord}}.png" ng-style="styles[6]" ng-class="triggerWord" class="rain6" ng-if="trigger">      
+      <img ng-src="img/{{triggerWord}}.png" ng-style="styles[7]" ng-class="triggerWord" class="rain7" ng-if="trigger">
+      <img ng-src="img/{{triggerWord}}.png" ng-style="styles[8]" ng-class="triggerWord" class="rain8" ng-if="trigger">
+      <img ng-src="img/{{triggerWord}}.png" ng-style="styles[9]" ng-class="triggerWord" class="rain9" ng-if="trigger">
 
       <div class="row row-bottom" ng-init="loadChat()">
         <div class="col">

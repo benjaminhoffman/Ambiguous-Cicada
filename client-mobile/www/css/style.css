@@ -111,29 +111,72 @@ div.image {
     overflow: hidden;
 }
 
-img {
-  /*background-image: url('../img/cho.png');*/
-  /*background-size: 100%;
-  background-repeat: no-repeat;*/
-  width: 30px;
-  height: 30px;
-  margin-left: 8px;
-  margin-right: 8px;
-  float: right;
+.rain {
+  width: 50px;
+  height: 50px;
   z-index: 100;
+  position:absolute;
 }
 
-
-img.slide.ng-enter.trigger-word {
-  -webkit-transform:translateY(0px);
-  -webkit-animation-fill-mode: forwards;
-  opacity:1;
+.rain1 {
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  position:absolute;
 }
 
-
-img.slide.ng-enter.ng-enter-active.trigger-word {
-  -webkit-transform:translateY(700px);
-
-  opacity:0;
+.rain2 {
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  position:absolute;
 }
 
+.rain3 {
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  position:absolute;
+}
+
+.rain4 {
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  position:absolute;
+}
+
+.rain5 {
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  position:absolute;
+}
+
+.rain6 {
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  position:absolute;
+}
+
+.rain7 {
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  position:absolute;
+}
+
+.rain8 {
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  position:absolute;
+}
+
+.rain9 {
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  position:absolute;
+}
