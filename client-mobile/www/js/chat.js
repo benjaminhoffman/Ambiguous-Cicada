@@ -77,17 +77,22 @@ angular.module('kwiki.chat',[])
 
   $scope._listenToDraw = function(){
     var _begin = $ionicGesture.on('dragstart', function (evt){
-      $scope.initialThumbCoordinates = {x: evt.gesture.srcEvent.layerX, y:evt.gesture.srcEvent.layerY };
+      $scope.initialThumbCoordinates = {x: evt.gesture.srcEvent.layerX, y:evt.gesture.srcEvent.layerY};
       console.log('start of scope drag', $scope.initialThumbCoordinates);
     }, $scope.can);
     $ionicGesture.off(_begin, 'dragstart');
 
     $scope._drawGesture = $ionicGesture.on('drag', function (evt){
+      var y = evt.gesture.srcEvent.layerY;
       var coords = {
         x:evt.gesture.srcEvent.layerX, 
-        y:evt.gesture.srcEvent.layerY  
+        y: y 
       };
       $scope._clientLine($scope.initialThumbCoordinates, coords);
+    }, $scope.can);
+
+    $scope._drawGesture = $ionicGesture.on('mousemove', function (evt){
+      console.log('mouseover x: ', evt.offsetX, 'y: ',  evt.offsetX);
     }, $scope.can);
   };
 
@@ -166,7 +171,6 @@ angular.module('kwiki.chat',[])
 
     ChatFactory.loadPicture(function (imageDirections) {
       var msgCanvas = document.createElement('canvas');
-      // msgCanvas.id = 'picmsg-' + $scope.messages.length;
       $scope.messages.push(imageDirections);
       $scope.$apply();
       var chatCanvas = angular.element(document.getElementsByClassName('pic'));
