@@ -19,7 +19,7 @@
 
       <div class="row row-bottom" ng-init="loadChat()">
         <div class="col">
-          <div class="chatbox-container">
+          <div ng-class="{drawsize: draw}" class="chatbox-container">
             <ul class="chatbox">
               <li ng-switch="message.type" class="message-item" ng-repeat="message in messages track by $index">
                 <span class="user">{{ message.userName }} </span><br>
@@ -28,7 +28,7 @@
               </li>
             </ul>
           </div>
-          <form ng-class="{reg: draw}" style="bottom:50px; width:90%;" ng-submit="sendMessage()">
+          <form ng-class="{reg: draw}" style="bottom:50px; width:90%;" ng-submit="sendMessage($event)">
             <div class="item-input-inset" ng-switch="draw">
               <label ng-switch-when="false" class="item item-input-wrapper message-input">
                 <input type="text" ng-model="message.text" placeholder="Send a message ..."/>

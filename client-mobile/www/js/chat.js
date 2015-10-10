@@ -63,6 +63,7 @@ angular.module('kwiki.chat',[])
 
   $scope._clientLine = function(from, to) {
     var ctx = $scope.can[0].getContext('2d');
+    ctx.lineWidth=3;
     ctx.moveTo(from.x, from.y);
     ctx.lineTo(to.x, to.y);
     ctx.stroke();
@@ -100,7 +101,7 @@ angular.module('kwiki.chat',[])
     for(var i=0; i < coords.length; i++ ) {
       var from = coords[i].from;
       var to = coords[i].to;
-
+      ctx.lineWidth=2;
       ctx.moveTo(from.x, from.y);
       ctx.lineTo(to.x, to.y);
       ctx.stroke();
@@ -181,7 +182,8 @@ angular.module('kwiki.chat',[])
     });
   };
 
-  $scope.sendMessage = function () {
+  $scope.sendMessage = function ($event) {
+    console.log('form send', $event);
 
     if( $scope.drawMessageCoordinates.length > 0 ) {
       console.log('length of draw object before sending', $scope.drawMessageCoordinates.length);
