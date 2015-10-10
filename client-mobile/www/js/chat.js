@@ -77,13 +77,13 @@ angular.module('kwiki.chat',[])
 
   $scope._listenToDraw = function(){
     var _begin = $ionicGesture.on('dragstart', function (evt){
-      $scope.initialThumbCoordinates = {x: evt.gesture.srcEvent.layerX, y:evt.gesture.srcEvent.layerY + 20 };
+      $scope.initialThumbCoordinates = {x: evt.gesture.srcEvent.layerX, y:evt.gesture.srcEvent.layerY};
       console.log('start of scope drag', $scope.initialThumbCoordinates);
     }, $scope.can);
     $ionicGesture.off(_begin, 'dragstart');
 
     $scope._drawGesture = $ionicGesture.on('drag', function (evt){
-      var y = evt.gesture.srcEvent.layerY + 20;
+      var y = evt.gesture.srcEvent.layerY;
       var coords = {
         x:evt.gesture.srcEvent.layerX, 
         y: y 

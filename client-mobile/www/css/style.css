@@ -208,3 +208,8 @@ form {
   z-index: 100;
   position:absolute;
 }
+
+form.reg {
+  top:50%;
+  position:absolute;
+}
