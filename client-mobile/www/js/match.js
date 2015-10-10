@@ -36,6 +36,7 @@ angular.module('kwiki.match', ['ngCordova'])
     distance: 1
   };
   $rootScope.user.search = $rootScope.user.search || defaultSearch;
+  $rootScope.user.address = $rootScope.user.address || 'CURRENT LOCATION';
 
   $scope.map = { center: { latitude: 35.3580, longitude: 138.7310 }, zoom: 13 };
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
