@@ -213,3 +213,7 @@ form.reg {
   top:50%;
   position:absolute;
 }
+
+.drawsize {
+  height:275px;
+}
