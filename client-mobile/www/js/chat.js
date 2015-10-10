@@ -114,6 +114,8 @@ angular.module('kwiki.chat',[])
     $event.stopPropagation();
     $scope.draw = !$scope.draw;
 
+    $scope.message.text = '';
+
     if($scope.draw) {
       
       // this is terrible, just quick workaround while I work on the actual implementation
